@@ -2,7 +2,7 @@ const router  = require('express').Router();
 const usersController = require('../controllers/admin/users');
 
 router.get('/', (req, res) => {
-    res.send("Welcome to Omega website !");
+    res.redirect('/admin');
 })
 
 router.get('/login', usersController.login);
