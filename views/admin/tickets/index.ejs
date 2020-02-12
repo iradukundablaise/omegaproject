@@ -1,0 +1,48 @@
+<%- include('../partials/header'); %>
+
+<div class="row">
+    <div class="col col-md-12">
+        <h3>Latest tickets added</h3>
+        <hr>
+
+        <form action="/admin/tickets" method="get">
+            <div class="row">
+                <div class="col col-md-12 col-lg-6">
+                    <label for="query" class="sr-only">Password</label>
+                    <input type="text" class="form-control" id="query" placeholder="search client tickets by email" name="query">
+                </div>
+                <div class="col col-md-12 col-lg-6">
+                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Client email</th>
+                    <th>Purchase date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% tickets.forEach(function(ticket){ %>
+                    <tr>
+                        <td><%= ticket.get("bus").get("from") %></td>
+                        <td><%= ticket.get("bus").get("to") %></td>
+                        <td><%= ticket.get("bus").get("date") %></td>
+                        <td><%= ticket.get("bus").get("time") %></td>
+                        <td><%= ticket.get("createdBy").get("username") %> </td>
+                        <td><%= ticket.get("createdAt")%></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('../partials/footer'); %>
